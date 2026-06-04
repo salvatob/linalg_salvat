@@ -1,6 +1,7 @@
 add_library(linalg_core STATIC
         include/linalg/Matrix.hpp
         src/Matrix.tpp
+        src/linalg.cpp
 )
 
 target_include_directories(linalg_core

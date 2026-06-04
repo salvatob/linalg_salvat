@@ -32,9 +32,22 @@ void bindIntMatrix(py::module_& m) {
 //         "Vector" + std::to_string(Ns + 1)), ...);
 // }
 
+int add(int a, int b) {
+    return a + b;
+}
+
 PYBIND11_MODULE(linalg, m) {
     m.doc() = "A simple library for basic matrix operations.";
-    //
+    m.def("add", &add, "Add two integers");
+
+
+    py::class_<Matrix<int, 2, 2>>(m)
+        .def(py::init<>())
+        // .def("get", &Matrix<int, 2, 2>::get)
+        .def("set", &Matrix<int, 2, 2>::set)
+        .def("__repr__", &Matrix<int, 2, 2>::print)
+    ;
+    // bindIntMatrix(m);
     // for (size_t i = 0; i < 20; ++i) {
     //     for (size_t j = 0; j < 20; ++j) {
     //         bindIntMatrix<i, j>(m);
@@ -46,11 +59,5 @@ PYBIND11_MODULE(linalg, m) {
     // bindIntMatrix<1,2>(m);
     // bindIntMatrix<2,2>(m);
 
-    bindIntMatrix(m);
-    
-    // py::class_<Matrix>(m, Matrix);
-        // .def(py::init<float, float>())
-        // .def("length", &Vector2::length)
-        // .def_readwrite("x", &Vector2::x)
-        // .def_readwrite("y", &Vector2::y);
+
 }
