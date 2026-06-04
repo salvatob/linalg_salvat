@@ -1,4 +1,4 @@
-#include "linalg_salvat/vector2.hpp"
+#include <linalg/vector2.hpp>
 
 #include <cmath>
 

@@ -1,6 +1,6 @@
 #include <pybind11/pybind11.h>
 
-#include <linalg/vector2.h>
+#include <linalg/vector2.hpp>
 
 namespace py = pybind11;
 
