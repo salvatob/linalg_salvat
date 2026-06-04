@@ -14,3 +14,6 @@ cmake_minimum_required(VERSION 3.20)
 
 add_subdirectory(linalg_cpp)
 add_subdirectory(bindings)
+
+# for the Catch2 framework
+enable_testing()

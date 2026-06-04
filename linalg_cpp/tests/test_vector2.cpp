@@ -2,12 +2,13 @@
 #include <iostream>
 #include <ostream>
 
-// #include "linalg_salvat/vector2.hpp"
-//
-// int main() {
-//     Vector2 v(3.0f, 4.0f);
-//
-//     assert(v.length() == 5.0f);
-//
-//     std::cout << "All tests have passed. Hooray!!!" << std::endl;
-// }
+#include "linalg_salvat/vector2.hpp"
+
+int not_main() {
+    Vector2 v(3.0f, 4.0f);
+
+    assert(v.length() == 5.0f);
+
+    std::cout << "All tests have passed. Hooray!!!" << std::endl;
+    return 0;
+}
