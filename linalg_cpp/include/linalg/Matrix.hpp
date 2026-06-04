@@ -9,27 +9,30 @@ template<typename Element, size_t Height, size_t Width>
 class Matrix;
 
 // declare operators before the Matrix class so we can easily mark them as friend
+// matrix + increment
 template<typename Element, size_t Height, size_t Width>
 Matrix<Element, Height, Width> operator+(
     const Matrix<Element, Height, Width>& matrix,
     const Element& increment
     );
 
+// matrix * factor
 template<typename Element, size_t Height, size_t Width>
 Matrix<Element, Height, Width> operator*(
     const Matrix<Element, Height, Width>& matrix,
     const Element& factor
     );
 
+// matrix + matrix
 template<typename Element, size_t Height, size_t Width>
 Matrix<Element, Height, Width> operator+(
     const Matrix<Element, Height, Width>& matrix_1,
     const Matrix<Element, Height, Width>& matrix_2
     );
 
-
+// matrix * matrix
 template<typename Element, size_t M, size_t N, size_t P>
-Matrix<Element, M, P> mat_mul(
+Matrix<Element, M, P> operator*(
     const Matrix<Element, M, N>& matrix_1,
     const Matrix<Element, N, P>& matrix_2
     );
@@ -62,13 +65,25 @@ public:
     friend Matrix operator*<>(const Matrix& matrix, const Element& factor);
     friend Matrix operator+<>(const Matrix& matrix_1, const Matrix& matrix_2);
 
-
     template<typename E, size_t H, size_t D, size_t W>
         friend Matrix<E, H, W> operator*(
             const Matrix<E, H, D>& matrix_1,
             const Matrix<E, D, W>& matrix_2
         );
+
+    // matrix multiplication (different template parameters!)
+    template<typename E, size_t M, size_t N, size_t P>
+    friend Matrix<E, M, P> operator*(
+        const Matrix<E, M, N>& a,
+        const Matrix<E, N, P>& b
+    );
 };
+
+template<typename Element, size_t M, size_t N, size_t P>
+Matrix<Element, M, P> mat_mul(
+    const Matrix<Element, M, N>& matrix_1,
+    const Matrix<Element, N, P>& matrix_2
+    );
 
 
 
