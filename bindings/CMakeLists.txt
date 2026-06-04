@@ -10,11 +10,17 @@ execute_process(
 
 find_package(pybind11 CONFIG REQUIRED)
 
-pybind11_add_module(linalg
+pybind11_add_module(_core
         pybindings.cpp
 )
 
-target_link_libraries(linalg
+target_link_libraries(_core
         PRIVATE
         linalg_core
+)
+
+set_target_properties(_core PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/python/linalg
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/python/linalg
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/python/linalg
 )

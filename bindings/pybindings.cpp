@@ -36,17 +36,24 @@ int add(int a, int b) {
     return a + b;
 }
 
-PYBIND11_MODULE(linalg, m) {
+PYBIND11_MODULE(_core, m) {
     m.doc() = "A simple library for basic matrix operations.";
     m.def("add", &add, "Add two integers");
 
-
-    py::class_<Matrix<int, 2, 2>>(m)
+    using Matrix2x2 = Matrix<int, 2, 2>;
+    py::class_<Matrix2x2>(m, "Matrix2x2")
         .def(py::init<>())
-        // .def("get", &Matrix<int, 2, 2>::get)
-        .def("set", &Matrix<int, 2, 2>::set)
-        .def("__repr__", &Matrix<int, 2, 2>::print)
+        // .def(py::init<int>())
+        // .def("get", &Matrix2x2::get )
+        .def("set", &Matrix2x2::set)
+
+        .def("__repr__", [](const Matrix2x2& mat) {
+            std::stringstream ss;
+            ss << mat;
+            return ss.str();
+        })
     ;
+
     // bindIntMatrix(m);
     // for (size_t i = 0; i < 20; ++i) {
     //     for (size_t j = 0; j < 20; ++j) {

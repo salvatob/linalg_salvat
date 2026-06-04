@@ -46,7 +46,9 @@ class Matrix {
     class Request;
 
 public:
-    explicit Matrix(const Element& value = 0);
+    Matrix() = default;
+    explicit Matrix(const Element& value);
+    // explicit Matrix(const Element& value = 0);
 
     Element& get(size_t row, size_t column);
     const Element& get(size_t row, size_t column) const;
