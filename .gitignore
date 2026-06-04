@@ -1,0 +1,25 @@
+# Build directories
+/build/
+/cmake-build-*/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# CLion / JetBrains
+.idea/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# Native binaries
+*.pyd
+*.so
+*.dll
+*.lib
+*.exp
+*.obj
+*.o
