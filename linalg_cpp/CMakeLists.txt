@@ -1,7 +1,5 @@
 add_library(linalg_core STATIC
-        include/linalg/vector2.hpp
         include/linalg/Matrix.hpp
-        src/vector2.cpp
         src/Matrix.tpp
 )
 
