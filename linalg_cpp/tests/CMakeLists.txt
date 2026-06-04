@@ -19,6 +19,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 
 add_executable(linalg_tests
+        test_main.cpp
+        test_matmul_basic.cpp
+        test_matmul_edge.cpp
+        test_matmul_consistency.cpp
         test_matrix.cpp
 )
 
