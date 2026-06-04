@@ -1,12 +1,3 @@
-#add_executable(vector2_tests
-#        test_vector2.cpp
-#        test_matrix.cpp
-#)
-#
-#target_link_libraries(vector2_tests
-#        PRIVATE
-#        linalg_core
-#)
 
 include(FetchContent)
 
@@ -32,6 +23,7 @@ target_link_libraries(linalg_tests
         linalg_core
         Catch2::Catch2WithMain
 )
+
 
 include(CTest)
 

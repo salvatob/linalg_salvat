@@ -23,9 +23,15 @@ jobs:
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_BINDING=OFF
 
       - name: Build tests
-        run: cmake --build linalg_cpp/tests --target linalg_tests
+        run: cmake --build build --target linalg_tests
+#      - name: Build tests
+#        run: cmake --build build --target linalg_tests   # build directory is 'build'
+
+#      - name: Run tests
+#        working-directory: build                         # <-- must be build, not source
+#        run: ctest --output-on-failure
 
       - name: Run tests
-        working-directory: linalg_cpp/tests
+        working-directory: build
         run: ctest --output-on-failure
 
