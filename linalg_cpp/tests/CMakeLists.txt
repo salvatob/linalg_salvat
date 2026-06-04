@@ -24,6 +24,7 @@ add_executable(linalg_tests
         test_matmul_edge.cpp
         test_matmul_consistency.cpp
         test_matrix.cpp
+        test_matmul_compile_fail.cpp
 )
 
 target_link_libraries(linalg_tests
