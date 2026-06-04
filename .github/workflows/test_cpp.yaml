@@ -1,0 +1,31 @@
+name: C++ CI with Catch2
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      # If Catch2 is header‑only, nothing else needed.
+      # If you use Catch2 as a shared lib, you could install via apt:
+      #   sudo apt-get install -y catch2
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build tests
+        run: cmake --build build --target linalg_tests
+
+      - name: Run tests
+        working-directory: build
+        run: ctest --output-on-failure
+
