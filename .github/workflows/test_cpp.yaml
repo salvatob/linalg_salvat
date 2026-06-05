@@ -24,12 +24,6 @@ jobs:
 
       - name: Build tests
         run: cmake --build build --target linalg_tests
-#      - name: Build tests
-#        run: cmake --build build --target linalg_tests   # build directory is 'build'
-
-#      - name: Run tests
-#        working-directory: build                         # <-- must be build, not source
-#        run: ctest --output-on-failure
 
       - name: Run tests
         working-directory: build

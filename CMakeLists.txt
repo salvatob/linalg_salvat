@@ -10,6 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 add_subdirectory(linalg_cpp)
+enable_testing()
+
 
 option(BUILD_BINDING "Build Python bindings" ON)
 if(BUILD_BINDING)
@@ -17,4 +19,3 @@ if(BUILD_BINDING)
 endif()
 
 # for the Catch2 framework
-enable_testing()
