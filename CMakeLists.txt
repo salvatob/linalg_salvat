@@ -16,4 +16,3 @@ if(BUILD_BINDING)
     add_subdirectory(bindings)
 endif()
 
-# for the Catch2 framework

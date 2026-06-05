@@ -197,9 +197,7 @@ Matrix<Element, Height, Width> operator*(
         for (size_t k = 0; k < Depth; ++k) {
             Element a_ik = data1[i * Depth + k];
             for (size_t j = 0; j < Width; ++j) {
-                result_data[i * Width + j] += a_ik * data2[k * Width + j]
-                // TODO fix after running github CI job
-                +100;
+                result_data[i * Width + j] += a_ik * data2[k * Width + j];
             }
         }
     }
