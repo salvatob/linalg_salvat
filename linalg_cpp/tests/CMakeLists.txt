@@ -23,15 +23,11 @@ target_link_libraries(linalg_tests
         linalg_core
         Catch2::Catch2WithMain
 )
-
-#
 #include(CTest)
-#
 #include(Catch)
-#
 #catch_discover_tests(linalg_tests)
 
-enable_testing()
+#enable_testing()
 #add_test(NAME linalg_tests COMMAND linalg_cpp/tests/linalg_tests)
 add_test(NAME linalg_tests
         COMMAND linalg_tests

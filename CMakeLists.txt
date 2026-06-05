@@ -6,11 +6,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-
-
+enable_testing()
 
 add_subdirectory(linalg_cpp)
-enable_testing()
 
 
 option(BUILD_BINDING "Build Python bindings" ON)
