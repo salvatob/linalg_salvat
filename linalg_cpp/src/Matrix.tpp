@@ -204,32 +204,3 @@ Matrix<Element, Height, Width> operator*(
 
     return result;
 }
-
-//
-// template<typename Element, size_t M, size_t N, size_t P>
-// Matrix<Element, M, P> mat_mul(const Matrix<Element, M, N>& matrix_1,
-//                               const Matrix<Element, N, P>& matrix_2) {
-//     // Initialize result matrix with zeros
-//     Matrix<Element, M, P> result(0);
-//
-//     // Raw pointers for efficient access (no shared_ptr overhead)
-//     const Element* a = matrix_1.data_->data();
-//     const Element* b = matrix_2.data_->data();
-//     Element* c = result.data_->data();
-//
-//     // Loop order i-k-j: optimal for row-major storage.
-//     // The inner loop accumulates over j, accessing B[k][j] and C[i][j] sequentially,
-//     // which maximizes cache locality.
-//     for (size_t i = 0; i < M; ++i) {
-//         for (size_t k = 0; k < N; ++k) {
-//             Element a_ik = a[i * N + k];
-//             // Skip multiplication if a_ik is zero – beneficial for sparse matrices,
-//             // but adds a branch; for dense matrices the compiler may vectorize better without it.
-//             // We keep it simple and rely on the compiler's optimizations.
-//             for (size_t j = 0; j < P; ++j) {
-//                 c[i * P + j] += a_ik * b[k * P + j];
-//             }
-//         }
-//     }
-//     return result;
-// }
