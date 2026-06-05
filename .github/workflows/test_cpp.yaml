@@ -13,17 +13,36 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake
+          sudo apt-get install -y build-essential cmake ccache
 
-      # If Catch2 is header‑only, nothing else needed.
-      # If you use Catch2 as a shared lib, you could install via apt:
-      #   sudo apt-get install -y catch2
+      - name: Cache FetchContent dependencies
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: ${{ runner.os }}-fetchcontent-${{ hashFiles('CMakeLists.txt', 'linalg_cpp/tests/CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-fetchcontent-
+
+#      - name: Configure CMake
+#        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_BINDING=OFF
 
       - name: Configure CMake
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_BINDING=OFF
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_BINDING=OFF \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-
 
       - name: Build tests
-        run: cmake --build build --target linalg_tests
+        run: cmake --build build --target linalg_tests --parallel
 
       - name: Run tests
         working-directory: build
